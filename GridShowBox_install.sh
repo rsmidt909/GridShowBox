@@ -32,7 +32,7 @@ theGridCatCheck(){
 
 theGridCatCheck
 
-
+#Check if Workspace directory exists
 workspaceCheck(){
     [[ ! -d ${GRID_HOME_DIR}/Workspace ]] && mkdir ${GRID_HOME_DIR}/Workspace
 }
@@ -41,3 +41,5 @@ workspaceCheck(){
 workspaceCheck
 
 
+
+#Below will start GridShowBox.py
