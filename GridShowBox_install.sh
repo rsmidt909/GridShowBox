@@ -49,5 +49,15 @@ scheduleDirCheck(){
 
 scheduleDirCheck
 
+
+#set ACL's to rinzler. THIS WILL NOT WORK UNLESS THE SCRIPT IS CALLED WITH SUDO
+setACL(){
+    setfacl -R -m u:rinzler:rwx $GRID_HOME_DIR
+}
+
+
+setACL
+
+
 #Below will start GridShowBox.py
 
