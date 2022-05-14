@@ -47,4 +47,7 @@ scheduleDirCheck(){
 }
 
 
+scheduleDirCheck
+
 #Below will start GridShowBox.py
+
