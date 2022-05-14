@@ -41,5 +41,10 @@ workspaceCheck(){
 workspaceCheck
 
 
+#Check if dir for schedule exists
+scheduleDirCheck(){
+    [[ ! -d ${GRID_HOME_DIR}/Schedule ]] && mkdir ${GRID_HOME_DIR}/Schedule
+}
+
 
 #Below will start GridShowBox.py
