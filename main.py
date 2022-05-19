@@ -7,16 +7,16 @@ import random
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 encoding="locale"
 user = "rinzler"
-scheduleHome = "/home/" + user +"/GridShowBox/Schedule"
+schedule_home = "/home/" + user +"/GridShowBox/Schedule"
 schedule = {}
-listOfVideos = {}
-timeObject = time.localtime(time.time())
-gridClock = {
-    "Hour": timeObject.tm_hour,
-    "Min": timeObject.tm_min,
-    "CurrentTime": str(timeObject.tm_hour) + ":" + str(timeObject.tm_min)
+list_of_videos = {}
+time_object = time.localtime(time.time())
+grid_clock = {
+    "hour": time_object.tm_hour,
+    "min": time_object.tm_min,
+    "current_time": str(time_object.tm_hour) + ":" + str(time_object.tm_min)
 }
-gridLength = 0
+grid_length = 0
 class Video:
     Running = False,
     Length = "",
@@ -25,7 +25,7 @@ class Video:
     PostTag = "",
     Tag = "",
     Holiday = "",
-    ID = 0,
+    PrimID = 0,
     Path = "",
     #Below are required
     Title = "",
@@ -34,9 +34,9 @@ class Video:
     Genre = ""
 
 holiday = False
-listOfRecentVideoIDs = []
+list_of_recentVideoIDs = []
 count = 0
-today = str(timeObject.tm_mon) + "/" + str(timeObject.tm_mday)
+today = str(time_object.tm_mon) + "/" + str(time_object.tm_mday)
 listOfHolidays = [
     "3/4",
     "4/5",
@@ -45,10 +45,11 @@ listOfHolidays = [
 
 videoID = 0
 
+cached_video_list_py = []
+
 def UpdateMasterFile(incomingData):
     with open('/home/rinzler/GridShowBox/TheGrid/MasterFile.json' 'r') as file:
-        parsedData = json.load(file)
-        parsedData.
+
 
 
 #creates a file names Count.txt and updates the number
@@ -74,10 +75,27 @@ def isTodayAHoliday():
             holiday = False
 
 
-def grabVideo():
-    videoID = random.randint(0, count)
-    os.gr
 
+#convert /home/rinzler/GridShowBox/MasterFile.json to an interable python pbject
+def make_masterfile_py():
+    with open('/home/rinzler/GridShowBox/MasterFile.json' 'r' ) as file:
+        video_list_raw = json.dumps(file)
+        cached_video_list_py = json.load(video_list_raw)
+
+#check if the cached_video_list_py is empty. If so, run make_masterfile
+def check_cached_video_py_contents():
+    if cached_video_list_py.count == 0:
+        make_masterfile_py()
+
+
+#return video object from ID
+def grabVideo(primid):
+    check_cached_video_py_contents()
+    video_object = Video()
+        for x in cached_video_list_py:
+            video_object = x
+            if x.PrimeID == primid:
+                
 
 # create the schedule
 def createSchedule():
