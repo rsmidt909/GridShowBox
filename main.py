@@ -41,8 +41,11 @@ class Video:
     Genre = "",
     Commercial = bool
 
+
 # cached variable of if today is a holiday from list_of_holidays
 holiday = False
+
+
 # Today's date in month/day format. Note: there are no zeros. EX. January = 1, August = 8
 today = str(time_object.tm_mon) + "/" + str(time_object.tm_mday)
 
@@ -101,8 +104,8 @@ def is_today_a_holiday():
 
 # check Masterfile exist, if not then make. NEEDS FIXED
 def check_masterfile():
-    print("MasterFile Check")
-        with open('/home/rinzler/TheGridSBox/MasterFile.json' 'w' 'utf-8') as file:
+    with open('/home/rinzler/TheGridShowBox/MasterFile.json' 'w' 'utf-8') as file:
+        print("MasterFile Check")
 
 
 # convert /home/rinzler/GridShowBox/MasterFile.json to an iterable python object and cache
@@ -119,7 +122,6 @@ def check_cached_video_py_contents():
         make_masterfile_py()
 
 
-
 # return one random number from count list with no duplicates
 def roll_1_random_number():
     global count
@@ -128,35 +130,32 @@ def roll_1_random_number():
     # check for duplicates
     for x in random_number_list:
         if random_number == random_number_list[x]:
-            roll_1_random_number
+            roll_1_random_number()
     print(random_number)
     return random_number
 
 
-
 # verify video type from list against argument
-def check_if_video_commercial(video_object, commercial):
-    if video_object.Commercial != type:
+def check_if_video_commercial(video_object, commercial_bool):
+    if video_object.Commercial != commercial_bool:
         return False
 
 
-
-#make list of videos by type Which means commercial property
-def add_to_list_of_video_objects_by_type(commercial):
+# make list of videos by type Which means commercial property
+def add_to_list_of_video_objects_by_type(commercial_bool):
     global list_of_commercial_videos
     global list_of_non_commercial_videos
     # generate one random number
-    number = roll_1_random_number
+    number = roll_1_random_number()
     # make one video object from the ID against the cached_video_list_py
     video = cached_video_list_py[number]
     # Check the video objects type against argument, if not, rerun.
-    if not check_if_video_commercial(video, commercial):
-        add_to_list_of_video_objects_by_type
-    if not commercial:
+    if not check_if_video_commercial(video, commercial_bool):
+        add_to_list_of_video_objects_by_type(commercial_bool)
+    if not commercial_bool:
         list_of_non_commercial_videos.append(video)
     else:
         list_of_commercial_videos.append(video)
-
 
 
 # Press the green button in the gutter to run the script.
