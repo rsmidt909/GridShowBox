@@ -68,14 +68,19 @@ cached_video_list_py = ()
 # list of random numbrs to keep track of possible duplicates.
 random_number_list = []
 
-# cached collection of video objects
-list_of_videos = []
+# current non-commercial video
+current_noncommercial_video = Video()
 
-# cached collection of commercial video objects
-list_of_commercial_videos = []
+# next non-commercial video
+next_noncommercial_video = Video()
 
-# cached collection of NONcommercial video objects
-list_of_non_commercial_videos = []
+# current commercial video
+current_commercial_video = Video()
+
+# next commercial video
+next_commercial_video = Video()
+
+
 
 
 ##########################CALL FUNCTIONS BELOW############################
@@ -136,26 +141,45 @@ def roll_1_random_number():
 
 
 # verify video type from list against argument
-def check_if_video_commercial(video_object, commercial_bool):
+def check_video_type(video_object, commercial_bool):
     if video_object.Commercial != commercial_bool:
         return False
 
 
-# make list of videos by type Which means commercial property
+# make list of videos by commercial bool
 def add_to_list_of_video_objects_by_type(commercial_bool):
-    global list_of_commercial_videos
-    global list_of_non_commercial_videos
+    global next_noncommercial_video
+    global next_commercial_video
     # generate one random number
     number = roll_1_random_number()
     # make one video object from the ID against the cached_video_list_py
     video = cached_video_list_py[number]
     # Check the video objects type against argument, if not, rerun.
-    if not check_if_video_commercial(video, commercial_bool):
+    if not check_video_type(video, commercial_bool):
         add_to_list_of_video_objects_by_type(commercial_bool)
     if not commercial_bool:
-        list_of_non_commercial_videos.append(video)
+        # need to change this to holding the original number and recycling the old
+        next_noncommercial_video = video
     else:
-        list_of_commercial_videos.append(video)
+        # need to change this to holding the original number and recycling the old
+        next_commercial_video = video
+
+
+# run the videos off of time
+def run_the_day():
+    # flag for if current video is paused
+    video_paused = False
+    # function to poll time
+    checktime()
+    # if statement for if time == **:25:00-**:29:55 or **:55:00-**:59:55
+    while machine_time ==
+        # noncommercial video playing, pause it
+        if current_commercial_video.Running:
+            pause_current_noncommercial_video(current_noncommercial_video)
+            video_paused = True
+        # play commercials until time == **:30:00 or **:00:00 then breaks while loop immediately
+        play_current_commercial(current_commercial_video)
+
 
 
 # Press the green button in the gutter to run the script.
