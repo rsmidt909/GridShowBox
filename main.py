@@ -169,6 +169,7 @@ def add_to_list_of_video_objects_by_type(commercial_bool):
 def run_the_day():
     # flag for if current video is paused
     video_paused = False
+    video_playing = False
     # function to poll time
     checktime()
     # if statement for if time == **:25:00-**:29:55 or **:55:00-**:59:55
@@ -179,8 +180,13 @@ def run_the_day():
             video_paused = True
         # play commercials until time == **:30:00 or **:00:00 then breaks while loop immediately
         play_current_commercial(current_commercial_video)
-
-
+    # if playing no video like first start up, play a commercial
+    if not video_playing:
+        play_current_commercial(current_commercial_video)
+    # if machine time == **:30:00 or **:00:00 play current noncommercial video
+    if machine_time ==
+        play_current_noncommercial_video(current_noncommercial_video)
+    run_the_day()
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
