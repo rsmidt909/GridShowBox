@@ -12,12 +12,20 @@ schedule_home = "/home/" + user + "/GridShowBox/Schedule"
 
 # cached version of localtime in object form on machine
 time_object = time.localtime(time.time())
+
+'''
 # py object of time with hour, min, and current time. Note: Leading Zero's do not exist. EX. 2:14, 9:3, 16:50,
 grid_clock = {
-    "hour": time_object.tm_hour,
-    "min": time_object.tm_min,
+    "hour": int(time_object.tm_hour),
+    "min": int(time_object.tm_min),
     "current_time": str(time_object.tm_hour) + ":" + str(time_object.tm_min)
 }
+'''
+grid_hour = int(time_object.tm_hour)
+
+grid_min = int(time_object.tm_min)
+
+grid_current_time = str(time_object.tm_hour) + ":" + str(time_object.tm_min)
 
 # length of time currently used by GridStream
 grid_length = 0
@@ -165,28 +173,25 @@ def add_to_list_of_video_objects_by_type(commercial_bool):
         next_commercial_video = video
 
 
-# run the videos off of time
-def run_the_day():
-    # flag for if current video is paused
-    video_paused = False
-    video_playing = False
-    # function to poll time
-    checktime()
-    # if statement for if time == **:25:00-**:29:55 or **:55:00-**:59:55
-    while machine_time ==
-        # noncommercial video playing, pause it
-        if current_commercial_video.Running:
-            pause_current_noncommercial_video(current_noncommercial_video)
-            video_paused = True
-        # play commercials until time == **:30:00 or **:00:00 then breaks while loop immediately
-        play_current_commercial(current_commercial_video)
-    # if playing no video like first start up, play a commercial
-    if not video_playing:
-        play_current_commercial(current_commercial_video)
-    # if machine time == **:30:00 or **:00:00 play current noncommercial video
-    if machine_time ==
-        play_current_noncommercial_video(current_noncommercial_video)
-    run_the_day()
+# need to make method for moving next video to current video and then replacing next video value with new random video
+def move_and_replace():
+# Move next video to current video Play Non-commercial video in current video
+def play_noncommercial_video():
+# Move next video to current video Play Commercial video in current vide
+def play_commercial_video():
+# pause the target video
+def pause_video(video):
+# unpause the target video
+def unpause_video(video):
+# play commercial until the local time minutes are 00 or 30
+def commercial_buffer():
+# pause, run commercial_buffer, and then resume video
+def commercial_watch():
+# watch for time and if video is playing
+def video_watch():
+    
+
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
