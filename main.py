@@ -174,22 +174,42 @@ def add_to_list_of_video_objects_by_type(commercial_bool):
 
 
 # need to make method for moving next video to current video and then replacing next video value with new random video
-def move_and_replace():
+def move_and_replace(commercial_bool):
+    global current_commercial_video
+    global current_noncommercial_video
+    if commercial_bool:
+        current_commercial_video = next_commercial_video
+        add_to_list_of_video_objects_by_type(commercial_bool)
+    else:
+        current_noncommercial_video = next_noncommercial_video
+        add_to_list_of_video_objects_by_type(commercial_bool)
+
+
 # Move next video to current video Play Non-commercial video in current video
 def play_noncommercial_video():
 # Move next video to current video Play Commercial video in current vide
 def play_commercial_video():
 # pause the target video
-def pause_video(video):
+def pause_video():
 # unpause the target video
-def unpause_video(video):
+def unpause_video():
+
+
+
 # play commercial until the local time minutes are 00 or 30
 def commercial_buffer():
+    while grid_min != 00 or 30:
+        play_commercial_video()
+
+
 # pause, run commercial_buffer, and then resume video
 def commercial_watch():
+    pause_video()
+    commercial_buffer()
+    unpause_video()
 # watch for time and if video is playing
 def video_watch():
-    
+
 
 
 
